@@ -21,5 +21,10 @@ public class EmployeeService {
 	public Employee findById(Long id){
 		return employeeRepository.findOne(id);
 	}
+	
+	public void addEmployee(Employee employee) {
+		employeeRepository.save(employee);
+		System.out.println(employee.toString());
+	}
 
 }
