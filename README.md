@@ -158,8 +158,36 @@ public void addEmployee(Employee employee) {
 ```
 
 ### Controller Setup
-...
-
+1.	creare la classe `EmployeeController.java` all'interno del package `com.example.springcloud.controller`
+2.	annotare la clase con `@RestController`
+3.	referenziare il servizio creato in precedenza inizializzandone una variabile
+```java
+@Autowired
+private EmployeeService employeeService;
+```
+4.	definire l'endpoint dell'API Rest che espone l'elenco degli oggetti di tipo Employee.  
+utilizare l'annotazione `@GetMapping` indicando il nome della risorsa da esporre, che fungerà da endpoint.  
+definire la funzione di ricerca della lista di oggetti utilizzando la funzione `findAllEmployee()` definita nella classe `EmployeeService.java`
+```java
+@GetMapping("/employees")
+public List<Employee> listAllEmployee(){
+	return employeeService.findAllEmployee();
+}
+```
+5.	definire l'endpoint dell'API Rest che permette di accedere ad un singolo oggetto Employee passandone in input l'ID
+```java
+@GetMapping("/employees/{id}")
+public Employee getEmployeeById(@PathVariable Long id) {
+	return employeeService.findById(id);
+}
+```
+6.	definire l'endpoint dell'API Rest che permette di inserire un nuovo oggetto Employee
+```java
+@PostMapping("/employees")
+public void addEmployee(@RequestBody Employee employee) {
+	employeeService.addEmployee(employee);
+}
+```
 ## Build e Run
 ...
 
