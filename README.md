@@ -73,7 +73,7 @@ La classe conterrà la definizione della risorsa Employee e i riferimenti alla ta
 @Entity
 @Table(name = "tbl_employee")
 public class Employee {...}
-```  
+```
 2.	definire chiavi e attributi dell'entità Employee, ad esempio
 ```java
 @Id
@@ -83,7 +83,7 @@ private String name;
 private String surname;
 private String level;
 private Double salary;
-``` 
+```
 3.	creare `getter` e `setter`, `costruttori` e metodo `toString()`
 ```java
 //constructor
@@ -120,10 +120,42 @@ Quando accederemo a `localhost:8080/console` (dopo aver compilato ed eseguito il
 ## Servizi di accesso al DB - Logica applicativa
 
 ### Repository Setup
-...
+`SpringBoot JPA` semplifica molto l'implementazione delle interfacce necessarie per l'accesso alle informazioni contenute all'interno del notro DB.
+Per accessi basilari, come negli esempi di questo tutorial, sarà necessario semplicemente definire una nuova interfaccia `EmployeeRepository.java` all'interno del package `com.example.springcloud.repository`.  
+1.	annotare l'interfaccia con `@Repository`
+2.	estendere l'interfacia con `JpaRepository<class, T>`
+```java
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {}
+```
+Con questa implementazione sarà possibile utilizzare primitive come `findAll()`, `findOne()` e `save()` per effettuare la ricerca di liste, singoli record e insermenti reispettivamente.
 
 ### Service Setup
-...
+1.	creare la classe `EmployeeService.java` all'interno del package `com.example.springcloud.service`
+2.	annotare la clase con `@Service`
+3.	referenziare il repository creato in precedenza inizializzandone una variabile
+```java
+@Autowired
+private EmployeeRepository employeeRepository;
+```
+4.	definire la funzione che permette di recuperare la lista di Employee
+```java
+public List<Employee> findAllEmployee(){
+	return employeeRepository.findAll();
+}
+```
+5.	definire la funzione che permette di recuperare il singolo oggetto Employee dato comenpu ili suo ID
+```java
+public Employee findById(Long id){
+	return employeeRepository.findOne(id);
+}
+```
+6.	definire la funzione che permette di aggiungere un record di tipo Employee
+```java
+public void addEmployee(Employee employee) {
+	employeeRepository.save(employee);
+	System.out.println(employee.toString());
+}
+```
 
 ### Controller Setup
 ...
