@@ -1,12 +1,12 @@
 # Employee Producer
 
-Il progetto `Employee Producer` √® una guida a come implementare un microservizio SpringBoot per acedere alla risorsa d'esempio Employee.
+Il progetto `Employee Producer` Ë una guida a come implementare un microservizio SpringBoot per acedere alla risorsa d'esempio Employee.
 per questo microservizio verranno utilizati i moduli Spring Boot `Web`, `JPA` e `H2`
 
 ## Creazione del progetto
 
-una volta creato un nuovo progetto Maven all'interno del vostro IDE preferito:
-1.	aprite il file `pom.xml`
+una volta creato un nuovo progetto Maven all'interno del vostro IDE preferito:  
+1.	aprite il file `pom.xml`  
 2.	nella sezione `<dependencies>...</dependencies>` includere i seguenti riferimenti
 ```java
 <dependency>
@@ -29,7 +29,7 @@ una volta creato un nuovo progetto Maven all'interno del vostro IDE preferito:
 ## Setup del Database H2
 
 verificare se presente il file `applicatio.yml` all'interno della root di progetto.
-nel caso non fosse gi√† generato dalle procedure del vostro IDE, createlo. in seguito:
+nel caso non fosse gi‡ generato dalle procedure del vostro IDE, createlo. in seguito:  
 1.	aggiungere la sezione dedicata aai settings del DB
 ```
 spring:
